@@ -9,16 +9,23 @@
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
     <sprite>sprites\sprOffPath</sprite>
+    <sprite>sprites\sprLevelOutline</sprite>
+    <sprite>sprites\sprLevelFilled</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scrMoveMovingObject.gml</script>
     <script>scripts\scrMoveStationary.gml</script>
+    <script>scripts\scrMoveEnemy.gml</script>
     <script>scripts\scrSpawnEnemy.gml</script>
     <script>scripts\scrSpawnBGObjects.gml</script>
+    <script>scripts\scrConvertFromGrid.gml</script>
+    <script>scripts\scrIsLeftButtonPressed.gml</script>
+    <script>scripts\scrIsRightButtonPressed.gml</script>
+    <script>scripts\scrIsRunButtonPressed.gml</script>
+    <script>scripts\scrIsRunButtonReleased.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objGameControl</object>
@@ -26,6 +33,8 @@
     <object>objects\objEnemy</object>
     <object>objects\objOffPath</object>
     <object>objects\objPersistentStats</object>
+    <object>objects\objLevelMarker</object>
+    <object>objects\objEnemyGrid</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>

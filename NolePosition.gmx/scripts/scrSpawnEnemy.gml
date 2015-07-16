@@ -1,4 +1,33 @@
-///scrSpawnEnemy()
+///scrSpawnEnemy(enemies)
+
+var enemies = argument0;
+
+var xPos;
+var yPos;
+
+var r;
+var e = 0;
+
+// Loop until enemy has been placed
+while (e == 0) {
+
+  r = irandom(2);
+
+  coords = scrConvertFromGrid(r, 0);
+  
+  // Checks for enemy at position
+  if (enemies[0, r] == 0) {
+    e = instance_create(coords[0], coords[1], objEnemy);
+  }
+
+}
+
+e.gridX = r;
+e.gridY = 0;
+
+return e;
+
+/* Original code:
 
 ///Spawns enemies in random position across top
 
@@ -14,3 +43,5 @@ while (e == 0) {
   }
 
 }
+
+*/

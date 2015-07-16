@@ -33,28 +33,15 @@ with (objPersistentStats) {
   // Set level
   global.level = level;
 }
-
-//Size of grid in pixels
-global.gridSize = 64;
-
-
 //Number of seconds for each tick, based on level and local levelAdjustment variable
 var levelAdjustment = 0.9;
 global.tickSpeed = 1 * (power(levelAdjustment, (global.level  - 1)));
 
-//Number of ticks it takes to get from top to bottom of screen
-global.numTicks = room_height / global.gridSize;
+//Speed of flashes (when player gets hit), in seconds
+global.flashSpeed = 0.25;
 
-//How far objects move in one tick down the screen
-global.xMovement = global.gridSize / 3;
-
-//Top edges of road
-global.topLeft = 288;
-global.topRight = 704;
-
-//Difference factor between top and bottom grids
-global.gridDiff = 1.5;
-
+// Maximum value of bottom X of grid
+global.gridMax = 4;
 
 // Lives
 lives = 4;
@@ -78,9 +65,10 @@ lives = 4;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Start timer
+            <string>///Start timers
 
 alarm[0] = global.tickSpeed * room_speed;
+alarm[1] = global.tickSpeed * 1.5 * room_speed;
 </string>
           </argument>
         </arguments>
@@ -105,6 +93,123 @@ alarm[0] = global.tickSpeed * room_speed;
 
 //Uncomment for "real" randomness, comment to see same results each time
 randomize();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Create level markers
+
+// Create 12 level markers
+for (var i = 0; i &lt; 12; ++i) {
+  
+  instance_create(96 + (i * 64), 32, objLevelMarker);
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Setup a container for the enemies in each row
+
+enemies[0,0] = 0;
+enemies[0,1] = 0;
+enemies[0,2] = 0;
+
+enemies[1,0] = 0;
+enemies[1,1] = 0;
+enemies[1,2] = 0;
+enemies[1,3] = 0;
+
+enemies[2,0] = 0;
+enemies[2,1] = 0;
+enemies[2,2] = 0;
+enemies[2,3] = 0;
+enemies[2,4] = 0;
+
+enemies[3,0] = 0;
+enemies[3,1] = 0;
+enemies[3,2] = 0;
+enemies[3,3] = 0;
+enemies[3,4] = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Offbeat timer (for offbeat sounds, etc.)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Reset alarm
+
+alarm[1] = global.tickSpeed * room_speed;
 </string>
           </argument>
         </arguments>
@@ -176,9 +281,51 @@ alarm[0] = global.tickSpeed * room_speed;
             <kind>1</kind>
             <string>///Move enemies down
 
-with (objEnemy) {
-  scrMoveMovingObject(self.id);
+// Start with any in the bottom row (3)
+
+for (var i = 0; i &lt; 5; ++i) {
+  
+  if (enemies[3, i] != 0) {
+    with (enemies[3,i]) {
+      instance_destroy();
+    }
+    enemies[3, i] = 0;
+  }
 }
+  
+// Then do row 2
+ 
+for (var i = 0; i &lt; 5; ++i) {
+  if (enemies[2, i] != 0) {
+    var e = enemies[2, i];
+    scrMoveEnemy(e, enemies);
+    enemies[e.gridY, e.gridX] = e;
+    enemies[2, i] = 0;
+  }
+} 
+ 
+// Then do row 1
+
+for (var i = 0; i &lt; 4; ++i) {
+  if (enemies[1, i] != 0) {
+    var e = enemies[1, i];
+    scrMoveEnemy(e, enemies);
+    enemies[e.gridY, e.gridX] = e;
+    enemies[1, i] = 0;
+  }
+} 
+
+// Then do row 0 (the top row)
+
+for (var i = 0; i &lt; 3; ++i) {
+  if (enemies[0, i] != 0) {
+    var e = enemies[0, i];
+    scrMoveEnemy(e, enemies);
+    enemies[e.gridY, e.gridX] = e;
+    enemies[0, i] = 0;
+  }
+} 
+
 </string>
           </argument>
         </arguments>
@@ -249,16 +396,17 @@ with (objOffPath) {
             <kind>1</kind>
             <string>///Spawn enemies, possibly
 
-var r = irandom(8);
+var r = irandom(6);
 
-//Makes it so it only spawns enemies about half the time, with a max of 4
-if (r &gt; 4) {
+//Makes it so it only spawns enemies about half the time, with a max of 3
+if (r &gt; 3) {
   r = 0;
 }
 
 //Spawn the enemies
 for (var i = 0; i &lt; r; ++i) {
-  scrSpawnEnemy();
+  var e = scrSpawnEnemy(enemies);
+  enemies[e.gridY, e.gridX] = e;
 }
 </string>
           </argument>
@@ -282,7 +430,7 @@ for (var i = 0; i &lt; r; ++i) {
             <kind>1</kind>
             <string>/// Spawn off path objects, possibly
 
-var r = irandom(3);
+var r = 0;//irandom(3);
 
 //Only spawn about half the time, max 2
 if (r &gt; 2) {
@@ -313,19 +461,32 @@ for (var i = 0; i &lt; r; ++i) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Change level?
+            <string>/// Change level
 
 if (score % 20 == 0) {
-  
-  // Set level in persistent object
-  with (objPersistentStats) {
-    level++;
-    show_message("Congratulations! You made it to level " + string(level));    
-  }
 
- 
-  room_restart();
+
+
+    // Set level in persistent object
+    with (objPersistentStats) {
+      // If not on last level, advance level
+      if (level &lt; 12) {  
+        level++;
+        show_message("Congratulations! You made it to level " + string(level));   
+        lives = 4;
+      } else {
+          // Otherwise, end game successfully somehow
+          
+          show_message("You win the game!");
+          level = 1;
+          lives = 4;  
+          score = 0;   
+      }
+    }
+    
+   room_restart();
 }
+
 
 </string>
           </argument>
@@ -351,7 +512,30 @@ if (score % 20 == 0) {
             <kind>1</kind>
             <string>///Draw score
 
-draw_text(50, 50, score);
+draw_text(50, 50, "Score: " + string(score));
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw lives
+
+draw_text(928, 96, "Lives: " + string(lives));
 </string>
           </argument>
         </arguments>
