@@ -168,6 +168,31 @@ enemies[3,4] = 0;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// spawn backgrounds
+
+instance_create(512, 300, objField);
+
+instance_create(512 + 1124, 300, objHandheld);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="1">
       <action>
@@ -535,7 +560,7 @@ draw_text(50, 50, "Score: " + string(score));
             <kind>1</kind>
             <string>/// Draw lives
 
-draw_text(928, 96, "Lives: " + string(lives));
+draw_text(928, 96, "Down: " + string(5 - lives));
 </string>
           </argument>
         </arguments>

@@ -11,6 +11,8 @@
     <sprite>sprites\sprOffPath</sprite>
     <sprite>sprites\sprLevelOutline</sprite>
     <sprite>sprites\sprLevelFilled</sprite>
+    <sprite>sprites\sprField</sprite>
+    <sprite>sprites\sprHandheld</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>
@@ -35,6 +37,8 @@
     <object>objects\objPersistentStats</object>
     <object>objects\objLevelMarker</object>
     <object>objects\objEnemyGrid</object>
+    <object>objects\objField</object>
+    <object>objects\objHandheld</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>
