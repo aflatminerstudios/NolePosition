@@ -25,6 +25,7 @@
     <script>scripts\scrSpawnBGObjects.gml</script>
     <script>scripts\scrConvertFromGrid.gml</script>
     <script>scripts\scrIsLeftButtonPressed.gml</script>
+    <script>scripts\scrIsStartButtonPressed.gml</script>
     <script>scripts\scrIsRightButtonPressed.gml</script>
     <script>scripts\scrIsRunButtonPressed.gml</script>
     <script>scripts\scrIsRunButtonReleased.gml</script>
@@ -39,6 +40,7 @@
     <object>objects\objEnemyGrid</object>
     <object>objects\objField</object>
     <object>objects\objHandheld</object>
+    <object>objects\objStartControl</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>
