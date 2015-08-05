@@ -36,7 +36,8 @@ with (object) {
     image_index = gridY;    
 
     // Destroy enemy after a bit, so that player can move into that square
-    alarm[11] = room_speed * global.tickSpeed / 4;
+    // 1 frame is not enough, as enemies might get destoyed before collision occurs
+    alarm[11] = 2;//room_speed * global.tickSpeed / 4;
       
   }
 }

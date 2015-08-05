@@ -514,7 +514,7 @@ for (var i = 0; i &lt; r; ++i) {
             <kind>1</kind>
             <string>/// Change level
 
-if (score % 20 == 0) {
+if (score % 100 == 0) {
 
 
 
