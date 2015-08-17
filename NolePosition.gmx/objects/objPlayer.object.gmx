@@ -184,6 +184,9 @@ if (--lives &lt; 1) {
     
   }
   
+  audio_play_sound(sndCrash, 15, false);
+
+    
   alarm[0] = global.flashSpeed * room_speed;
   
  
