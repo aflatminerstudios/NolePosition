@@ -7,6 +7,7 @@
   <sounds name="sound">
     <sound>sound\sndBasicBeep</sound>
     <sound>sound\sndCrash</sound>
+    <sound>sound\sndBeatLevel</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprPlayer</sprite>
