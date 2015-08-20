@@ -188,8 +188,12 @@ enemies[3,4] = 0;
 
 if (instance_number(objField) == 0) {
     instance_create(512, 300, objField);
+}
+
+if (instance_number(objGoalPost) == 0) {
     instance_create(512, 225, objGoalPost);
 }
+
 if (instance_number(objHandheld) == 0) { 
     instance_create(512 + 1124, 300, objHandheld);
 }
@@ -262,6 +266,10 @@ isCrash = false;
           <argument>
             <kind>1</kind>
             <string>/// Restarts room
+
+with (objGoalPost) {
+  image_index = 0;
+}
 
 room_restart();
 </string>
@@ -503,6 +511,11 @@ if (r &gt; 3) {
   r = 0;
 }
 
+// ALWAYS spawn enemies when there are none on the screen
+if (instance_number(objEnemy) == 0) {
+  r = irandom(2) + 1;
+}
+
 //Spawn the enemies
 for (var i = 0; i &lt; r; ++i) {
   var e = scrSpawnEnemy(enemies);
@@ -574,11 +587,18 @@ if (score % 50 == 0) {
         level++;
         show_message("Congratulations! You made it to level " + string(level));   
         lives = 4;
+        with (objGoalPost) {
+          image_index = 1;
+        }
         audio_play_sound(sndBeatLevel, 15, false);
       } else {
           // Otherwise, end game successfully somehow
           
           show_message("You win the game!");
+          with (objGoalPost) {
+            image_index = 1;
+          }
+          audio_play_sound(sndBeatLevel, 15, false);
           level = 1;
           lives = 4;  
           score = 0;   
@@ -587,7 +607,7 @@ if (score % 50 == 0) {
    
    // Restarts room
    alarm[2] = audio_sound_length(sndBeatLevel) * room_speed; 
-
+   alarm[0] = -5;
 }
 
 

@@ -23,6 +23,18 @@ with (object) {
     y = coords[1];
     
     dir = irandom(1);    
+    
+    
+    /*//Check for previous enemy going to the right if current enemy is trying to move left
+    if (dir == 0 && gridY > 1) {
+      if (enemies[gridY, gridX - 1] != 0) {
+        if (enemies[gridY, gridX - 1].dir == 1) {
+          dir = 1;
+        }
+      }
+    }*/
+    
+    
     //image_index = gridY;   
     image_index = 1 + dir; 
     if (gridY == 2) {

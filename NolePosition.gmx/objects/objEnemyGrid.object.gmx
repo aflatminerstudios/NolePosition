@@ -27,14 +27,14 @@
             <kind>1</kind>
             <string>/// Setup grid for enemies
 
-gridX[0,0] = 304;
-gridX[0,1] = 368;
-gridX[0,2] = 432;
+gridX[0,0] = 320;
+gridX[0,1] = 448;
+gridX[0,2] = 576;
 
 gridX[1,0] = 256;
-gridX[1,1] = 352;
-gridX[1,2] = 448;
-gridX[1,3] = 544;
+gridX[1,1] = 384;
+gridX[1,2] = 512;
+gridX[1,3] = 640;
 
 gridX[2,0] = 192;
 gridX[2,1] = 320;
