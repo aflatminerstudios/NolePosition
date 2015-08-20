@@ -16,7 +16,11 @@
     <sprite>sprites\sprLevelOutline</sprite>
     <sprite>sprites\sprLevelFilled</sprite>
     <sprite>sprites\sprField</sprite>
+    <sprite>sprites\sprCurrentGame</sprite>
+    <sprite>sprites\sprGameNotPlayed</sprite>
+    <sprite>sprites\sprGameWon</sprite>
     <sprite>sprites\sprHandheld</sprite>
+    <sprite>sprites\sprGoalPost</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>
@@ -33,6 +37,7 @@
     <script>scripts\scrIsRightButtonPressed.gml</script>
     <script>scripts\scrIsRunButtonPressed.gml</script>
     <script>scripts\scrIsRunButtonReleased.gml</script>
+    <script>scripts\scrCollision.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\objGameControl</object>
@@ -45,6 +50,7 @@
     <object>objects\objField</object>
     <object>objects\objHandheld</object>
     <object>objects\objStartControl</object>
+    <object>objects\objGoalPost</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>

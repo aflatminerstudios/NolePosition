@@ -7,7 +7,7 @@ with (object) {
 
   if (gridY < 2) {
     // Increase y by one and x by 0 or 1
-    var r = irandom(1);
+    var r = dir;
     
     if (enemies[gridY + 1, gridX + r] != 0) {
       r = 1 - r;
@@ -22,7 +22,12 @@ with (object) {
     x = coords[0];
     y = coords[1];
     
-    image_index = gridY;    
+    dir = irandom(1);    
+    //image_index = gridY;   
+    image_index = 1 + dir; 
+    if (gridY == 2) {
+      image_index = 0;
+    }
     
   } else if (gridY == 2) {
     gridY += 1;
@@ -33,7 +38,7 @@ with (object) {
     x = coords[0];
     y = coords[1];
     
-    image_index = gridY;    
+    image_index = 0;    
 
     // Destroy enemy after a bit, so that player can move into that square
     // 1 frame is not enough, as enemies might get destoyed before collision occurs

@@ -188,6 +188,7 @@ enemies[3,4] = 0;
 
 if (instance_number(objField) == 0) {
     instance_create(512, 300, objField);
+    instance_create(512, 225, objGoalPost);
 }
 if (instance_number(objHandheld) == 0) { 
     instance_create(512 + 1124, 300, objHandheld);
@@ -562,7 +563,7 @@ for (var i = 0; i &lt; r; ++i) {
             <kind>1</kind>
             <string>/// Change level
 
-if (score % 100 == 0) {
+if (score % 50 == 0) {
 
 
 
@@ -623,6 +624,31 @@ audio_play_sound(sndBasicBeep, 10, false);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Adjust player sprite
+
+with (objPlayer) {
+  image_index = abs(image_index - 1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -643,7 +669,7 @@ audio_play_sound(sndBasicBeep, 10, false);
             <kind>1</kind>
             <string>///Draw score
 
-draw_text(50, 50, "Score: " + string(score));
+draw_text(745, 194, string(score));
 </string>
           </argument>
         </arguments>
@@ -666,7 +692,7 @@ draw_text(50, 50, "Score: " + string(score));
             <kind>1</kind>
             <string>/// Draw lives
 
-draw_text(928, 96, "Down: " + string(5 - lives));
+draw_text(330, 195, string(5 - lives));
 </string>
           </argument>
         </arguments>
