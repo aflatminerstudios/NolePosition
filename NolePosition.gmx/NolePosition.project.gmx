@@ -12,9 +12,6 @@
   <sprites name="sprites">
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
-    <sprite>sprites\sprOffPath</sprite>
-    <sprite>sprites\sprLevelOutline</sprite>
-    <sprite>sprites\sprLevelFilled</sprite>
     <sprite>sprites\sprField</sprite>
     <sprite>sprites\sprCurrentGame</sprite>
     <sprite>sprites\sprGameNotPlayed</sprite>
@@ -43,7 +40,6 @@
     <object>objects\objGameControl</object>
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
-    <object>objects\objOffPath</object>
     <object>objects\objPersistentStats</object>
     <object>objects\objLevelMarker</object>
     <object>objects\objEnemyGrid</object>

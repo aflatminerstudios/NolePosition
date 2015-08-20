@@ -175,7 +175,7 @@ if (scrIsRunButtonPressed()) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scrCollision();
+            <string>//scrCollision();
 </string>
           </argument>
         </arguments>

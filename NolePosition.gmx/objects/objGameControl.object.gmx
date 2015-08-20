@@ -115,10 +115,17 @@ randomize();
             <kind>1</kind>
             <string>/// Create level markers
 
+// In case we change some widths
+var w = 64;
+var beginning = (view_wview[1] - w * 12) / 2;
+
+// 1/2 of the sprite width
+beginning += 27;
+
 // Create 12 level markers
 for (var i = 0; i &lt; 12; ++i) {
   
-  instance_create(96 + (i * 64), 32, objLevelMarker);
+  instance_create(beginning + (i * w), 32, objLevelMarker);
 
 }
 </string>
@@ -454,54 +461,6 @@ for (var i = 0; i &lt; 3; ++i) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Adjust score
-
-score += 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Move stationary objects
-
-with (objOffPath) {
-  scrMoveStationary(self.id);  
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Spawn enemies, possibly
 
 var r = irandom(6);
@@ -541,19 +500,76 @@ for (var i = 0; i &lt; r; ++i) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Spawn off path objects, possibly
+            <string>///Adjust player sprite
 
-var r = 0;//irandom(3);
+with (objPlayer) {
+  image_index = abs(image_index - 1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for collision
 
-//Only spawn about half the time, max 2
-if (r &gt; 2) {
-  r = 0;
+var playerX;
+
+with (objPlayer) {
+  playerX = gridX;
 }
 
-//Spawn the objects
-for (var i = 0; i &lt; r; ++i) {
-  scrSpawnBGObjects();
+if (enemies[3, playerX] != 0) {
+  scrCollision();
+} else {
+  for (var i = 0; i &lt; 5; ++i) {
+    if (enemies[3, i] != 0) {
+      e = enemies[3, i];
+      with (e) {
+        instance_destroy();
+      }
+      enemies[3, i] = 0;
+    }
+   
+  }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Adjust score
+
+score += 1;
 </string>
           </argument>
         </arguments>
@@ -576,7 +592,7 @@ for (var i = 0; i &lt; r; ++i) {
             <kind>1</kind>
             <string>/// Change level
 
-if (score % 50 == 0) {
+if (score % 35 == 0) {
 
 
 
@@ -590,6 +606,9 @@ if (score % 50 == 0) {
         with (objGoalPost) {
           image_index = 1;
         }
+        with (objEnemy) {
+          instance_destroy();
+        }
         audio_play_sound(sndBeatLevel, 15, false);
       } else {
           // Otherwise, end game successfully somehow
@@ -597,6 +616,9 @@ if (score % 50 == 0) {
           show_message("You win the game!");
           with (objGoalPost) {
             image_index = 1;
+          }
+          with (objEnemy) {
+            instance_destroy();
           }
           audio_play_sound(sndBeatLevel, 15, false);
           level = 1;
@@ -640,31 +662,6 @@ audio_play_sound(sndBasicBeep, 10, false);
 
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Adjust player sprite
-
-with (objPlayer) {
-  image_index = abs(image_index - 1);
-}
 </string>
           </argument>
         </arguments>

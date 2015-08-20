@@ -25,14 +25,14 @@ with (object) {
     dir = irandom(1);    
     
     
-    /*//Check for previous enemy going to the right if current enemy is trying to move left
-    if (dir == 0 && gridY > 1) {
+    //Check for previous enemy going to the right if current enemy is trying to move left
+    if (dir == 0 && gridX > 0) {
       if (enemies[gridY, gridX - 1] != 0) {
         if (enemies[gridY, gridX - 1].dir == 1) {
           dir = 1;
         }
       }
-    }*/
+    }
     
     
     //image_index = gridY;   
@@ -40,6 +40,8 @@ with (object) {
     if (gridY == 2) {
       image_index = 0;
     }
+    
+    object.depth -= 1;
     
   } else if (gridY == 2) {
     gridY += 1;
@@ -51,10 +53,9 @@ with (object) {
     y = coords[1];
     
     image_index = 0;    
-
-    // Destroy enemy after a bit, so that player can move into that square
-    // 1 frame is not enough, as enemies might get destoyed before collision occurs
-    alarm[11] = 2;//room_speed * global.tickSpeed / 4;
-      
+    
+    object.depth -= 1;
+    
   }
 }
+ 

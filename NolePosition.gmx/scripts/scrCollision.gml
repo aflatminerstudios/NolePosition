@@ -11,7 +11,7 @@ if (--lives < 1) {
   with (objPersistentStats) {
     level = 1;
   }
-  
+  lives = 4;
   
   room_restart();
 } else {
