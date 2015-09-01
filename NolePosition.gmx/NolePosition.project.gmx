@@ -36,6 +36,9 @@
     <script>scripts\scrIsRunButtonReleased.gml</script>
     <script>scripts\scrCollision.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fntScoreboard</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objGameControl</object>
     <object>objects\objPlayer</object>

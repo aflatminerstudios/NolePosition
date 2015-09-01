@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -254,6 +254,30 @@ isCrash = false;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Initialize font stuff
+
+draw_set_font(fntScoreboard);
+draw_set_halign(fa_center);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="2">
       <action>
@@ -302,6 +326,31 @@ room_restart();
           <argument>
             <kind>1</kind>
             <string>/// Offbeat timer (for offbeat sounds, etc.)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Adjust player sprite
+
+with (objPlayer) {
+  image_index = abs(image_index - 1);
+}
 </string>
           </argument>
         </arguments>
@@ -569,7 +618,7 @@ if (enemies[3, playerX] != 0) {
             <kind>1</kind>
             <string>///Adjust score
 
-score += 1;
+score += 1 * global.level;
 </string>
           </argument>
         </arguments>
@@ -594,7 +643,7 @@ score += 1;
 
 if (score % 35 == 0) {
 
-
+    score += lives * 10;
 
     // Set level in persistent object
     with (objPersistentStats) {
@@ -667,7 +716,7 @@ audio_play_sound(sndBasicBeep, 10, false);
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -686,7 +735,7 @@ audio_play_sound(sndBasicBeep, 10, false);
             <kind>1</kind>
             <string>///Draw score
 
-draw_text(745, 194, string(score));
+draw_text(120, 60, string(score));
 </string>
           </argument>
         </arguments>
@@ -709,7 +758,7 @@ draw_text(745, 194, string(score));
             <kind>1</kind>
             <string>/// Draw lives
 
-draw_text(330, 195, string(5 - lives));
+draw_text(view_wview[1] - 120, 60, string(5 - lives));
 </string>
           </argument>
         </arguments>
