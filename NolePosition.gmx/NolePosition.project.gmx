@@ -11,6 +11,7 @@
     <sound>sound\sndHalfBeep</sound>
     <sound>sound\sndBeatGame</sound>
     <sound>sound\sndMoveBeep</sound>
+    <sound>sound\sndGameOver</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprPlayer</sprite>
@@ -21,6 +22,14 @@
     <sprite>sprites\sprGameWon</sprite>
     <sprite>sprites\sprHandheld</sprite>
     <sprite>sprites\sprGoalPost</sprite>
+    <sprite>sprites\sprTDPlayer</sprite>
+    <sprite>sprites\sprOsceola</sprite>
+    <sprite>sprites\sprTDPlayerOff</sprite>
+    <sprite>sprites\sprOsceolaOff</sprite>
+    <sprite>sprites\sprEndzone</sprite>
+    <sprite>sprites\sprFootballs</sprite>
+    <sprite>sprites\sprFootballsOff</sprite>
+    <sprite>sprites\sprYardLines</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>
@@ -51,8 +60,13 @@
     <object>objects\objEnemyGrid</object>
     <object>objects\objField</object>
     <object>objects\objHandheld</object>
-    <object>objects\objStartControl</object>
     <object>objects\objGoalPost</object>
+    <object>objects\objPlayerTouchdown</object>
+    <object>objects\objOsceola</object>
+    <object>objects\objEndzone</object>
+    <object>objects\objStartControl</object>
+    <object>objects\objFootballs</object>
+    <object>objects\objYardLines</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>

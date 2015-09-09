@@ -13,7 +13,17 @@ if (--lives < 1) {
   }
   lives = 4;
   
-  room_restart();
+    
+  audio_play_sound(sndGameOver, 15, false);
+
+  with (objPlayer) {
+    alarm[11] = audio_sound_length(sndGameOver) * room_speed;
+  }
+  
+  with (objGameControl) {
+    alarm[0] = -5;
+  }
+  
 } else {
   with (objEnemy) {
     instance_destroy();

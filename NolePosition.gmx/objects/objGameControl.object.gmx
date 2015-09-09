@@ -193,18 +193,34 @@ enemies[3,4] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// spawn backgrounds
+            <string>/// spawn background sprites
 
 if (instance_number(objField) == 0) {
     instance_create(512, 300, objField);
 }
 
 if (instance_number(objGoalPost) == 0) {
-    instance_create(512, 225, objGoalPost);
+    instance_create(512, 134, objGoalPost);
 }
 
 if (instance_number(objHandheld) == 0) { 
     instance_create(512 + 1124, 300, objHandheld);
+}
+
+if (instance_number(objPlayerTouchdown) == 0) { 
+    instance_create(340, 161, objPlayerTouchdown);
+}
+
+if (instance_number(objOsceola) == 0) { 
+    instance_create(700, 140, objOsceola);
+}
+
+if (instance_number(objFootballs) == 0) { 
+    instance_create(512, 140, objFootballs);
+}
+
+if (instance_number(objYardLines) == 0) { 
+    instance_create(512, 315, objYardLines);
 }
 </string>
           </argument>
@@ -423,7 +439,9 @@ audio_play_sound(sndHalfBeep, 10, false);
             <kind>1</kind>
             <string>///Main tick
 
-alarm[0] = global.tickSpeed * room_speed;
+if (alarm[0] &gt; -5) {
+  alarm[0] = global.tickSpeed * room_speed;
+}
 </string>
           </argument>
         </arguments>
@@ -705,7 +723,6 @@ if (global.numTicks % 35 == 0) {
       // If not on last level, advance level
       if (level &lt; 12) {  
         level++;
-        show_message("Congratulations! You made it to level " + string(level));   
         lives = 4;
         with (objGoalPost) {
           image_index = 1;
@@ -713,7 +730,35 @@ if (global.numTicks % 35 == 0) {
         with (objEnemy) {
           instance_destroy();
         }
+        with (objPlayer) {
+          instance_destroy();
+        }
         audio_play_sound(sndBeatLevel, 15, false);
+       
+       with (objYardLines) {
+        instance_destroy();
+       }
+        
+       // Restarts room
+       other.alarm[2] = audio_sound_length(sndBeatLevel) * room_speed; 
+       other.alarm[0] = -5;
+       other.alarm[1] = -5;
+       
+       //instance_create(340, 161, objPlayerTouchdown);
+       with (objPlayerTouchdown) {
+         sprite_index = sprTDPlayer;
+       }
+       
+       with (objOsceola) {
+         sprite_index = sprOsceola;
+       }
+
+       with (objFootballs) {
+         sprite_index = sprFootballs;
+       }
+              
+       instance_create(512, 240, objEndzone);
+       
       } else {
           // Otherwise, end game successfully somehow
           
@@ -727,13 +772,16 @@ if (global.numTicks % 35 == 0) {
           audio_play_sound(sndBeatGame, 15, false);
           level = 1;
           lives = 4;  
-          score = 0;   
+          score = 0; 
+      
+         // Restarts room
+         other.alarm[2] = audio_sound_length(sndBeatGame) * room_speed; 
+         other.alarm[0] = -5;  
+         other.alarm[1] = -5;          
       }
     }
    
-   // Restarts room
-   alarm[2] = audio_sound_length(sndBeatLevel) * room_speed; 
-   alarm[0] = -5;
+
 }
 
 
@@ -766,6 +814,31 @@ audio_play_sound(sndBasicBeep, 10, false);
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Change yard lines
+
+with (objYardLines) {
+  image_index = abs(image_index - 1);
+}
 </string>
           </argument>
         </arguments>
