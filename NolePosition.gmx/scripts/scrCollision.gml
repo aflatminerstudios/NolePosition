@@ -3,19 +3,13 @@
 /// Collision with enemy. Game over if all lives lost
 
 if (--lives < 1) {
-
-  show_message("Game over! You lose!  You scored " + string(score) + " points! You reached level " + string(global.level) + ".");
-  
-  //reset score and level
-  score = 0;
-  with (objPersistentStats) {
-    level = 1;
-  }
-  lives = 4;
-  
-    
+      
   audio_play_sound(sndGameOver, 15, false);
 
+  with (objGameOver) {
+    sprite_index = sprGameOver;
+  }
+  
  /* with (objPlayer) {
     alarm[11] = audio_sound_length(sndGameOver) * room_speed;
   }*/
@@ -24,6 +18,15 @@ if (--lives < 1) {
   
   with (objGameControl) {
     alarm[0] = -5;
+    alarm[1] = -5;
+  }
+  
+  with (objEnemy) {
+    instance_destroy();
+  }
+  
+  with (objPlayer) {
+    instance_destroy();
   }
   
 } else {

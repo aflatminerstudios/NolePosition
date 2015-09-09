@@ -34,7 +34,7 @@ with (objPersistentStats) {
   global.level = level;
 }
 //Number of seconds for each tick, based on level and local levelAdjustment variable
-var levelAdjustment = 0.96;
+var levelAdjustment = 0.94;
 global.tickSpeed = 1 * (power(levelAdjustment, (global.level  - 1)));
 
 //Speed of flashes (when player gets hit), in seconds
@@ -221,6 +221,10 @@ if (instance_number(objFootballs) == 0) {
 
 if (instance_number(objYardLines) == 0) { 
     instance_create(512, 315, objYardLines);
+}
+
+if (instance_number(objGameOver) == 0) {
+  instance_create(773, 107, objGameOver);
 }
 </string>
           </argument>
@@ -722,7 +726,7 @@ global.numTicks++;
             <kind>1</kind>
             <string>/// Change level
 
-if (global.numTicks % 5 == 0) {
+if (global.numTicks % 35 == 0) {
 
     score += lives * 10;
 

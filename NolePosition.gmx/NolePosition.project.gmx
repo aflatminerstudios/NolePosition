@@ -31,6 +31,8 @@
     <sprite>sprites\sprFootballsOff</sprite>
     <sprite>sprites\sprYardLines</sprite>
     <sprite>sprites\sprDebugSprite</sprite>
+    <sprite>sprites\sprGameOver</sprite>
+    <sprite>sprites\sprGameOverOff</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>
@@ -70,6 +72,7 @@
     <object>objects\objYardLines</object>
     <object>objects\objRestart</object>
     <object>objects\objDebugScreen</object>
+    <object>objects\objGameOver</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>
