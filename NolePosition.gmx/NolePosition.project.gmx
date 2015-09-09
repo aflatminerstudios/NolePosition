@@ -29,13 +29,13 @@
   <scripts name="scripts">
     <script>scripts\scrMoveStationary.gml</script>
     <script>scripts\scrMoveEnemy.gml</script>
+    <script>scripts\scrIsRunButtonPressed.gml</script>
     <script>scripts\scrSpawnEnemy.gml</script>
     <script>scripts\scrSpawnBGObjects.gml</script>
     <script>scripts\scrConvertFromGrid.gml</script>
     <script>scripts\scrIsLeftButtonPressed.gml</script>
     <script>scripts\scrIsStartButtonPressed.gml</script>
     <script>scripts\scrIsRightButtonPressed.gml</script>
-    <script>scripts\scrIsRunButtonPressed.gml</script>
     <script>scripts\scrIsRunButtonReleased.gml</script>
     <script>scripts\scrCollision.gml</script>
   </scripts>

@@ -45,6 +45,8 @@ global.gridMax = 4;
 
 // Lives
 lives = 4;
+
+global.numTicks = 0;
 </string>
           </argument>
         </arguments>
@@ -662,14 +664,44 @@ score += 1 * global.level;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Adjust number of ticks on this level up
+global.numTicks++;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Change level
 
-if (score % 35 == 0) {
+if (global.numTicks % 35 == 0) {
 
     score += lives * 10;
 
     // Set level in persistent object
     with (objPersistentStats) {
+    
+      score += consecutive * 10;
+      if (lives == 4) {
+        consecutive += 1;
+      } else {
+        consecutive = 0;
+      }
+    
       // If not on last level, advance level
       if (level &lt; 12) {  
         level++;
@@ -756,9 +788,9 @@ audio_play_sound(sndBasicBeep, 10, false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw score
+            <string>///Draw down
 
-draw_text(120, 60, string(score));
+draw_text(120, 60, string(5 - lives));
 </string>
           </argument>
         </arguments>
@@ -779,9 +811,9 @@ draw_text(120, 60, string(score));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw lives
+            <string>/// Draw score
 
-draw_text(view_wview[1] - 120, 60, string(5 - lives));
+draw_text(view_wview[1] - 120, 60, string(score));
 </string>
           </argument>
         </arguments>

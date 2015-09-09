@@ -28,6 +28,8 @@
             <string>/// Initialize statistics
 
 level = 1;
+
+consecutive = 0;
 </string>
           </argument>
         </arguments>

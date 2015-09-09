@@ -152,12 +152,13 @@ if (flashCounter == 0) {
     y = coords[1];  
     audio_play_sound(sndMoveBeep, 10, false);
   }
-  
+  /*
   if (scrIsRunButtonPressed()) {
     global.tickSpeed /= 2;
   } else if (scrIsRunButtonReleased()) {
     global.tickSpeed *= 2;
   }
+  */
 }
 </string>
           </argument>
