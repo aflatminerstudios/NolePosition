@@ -16,9 +16,11 @@ if (--lives < 1) {
     
   audio_play_sound(sndGameOver, 15, false);
 
-  with (objPlayer) {
+ /* with (objPlayer) {
     alarm[11] = audio_sound_length(sndGameOver) * room_speed;
-  }
+  }*/
+  
+  instance_create(0, 0, objRestart);
   
   with (objGameControl) {
     alarm[0] = -5;

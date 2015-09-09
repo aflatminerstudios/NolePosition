@@ -70,6 +70,36 @@ if (lev &gt; 1) {
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Start it all up!
+
+with (objDebugScreen) {
+  instance_destroy();
+}
+
+instance_create(0, 0, objGameControl);
+instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -89,11 +119,35 @@ if (lev &gt; 1) {
             <kind>1</kind>
             <string>if ( scrIsStartButtonPressed() ) {
 
-    instance_create(0, 0, objGameControl);
+    audio_play_sound(sndBeatLevel, 10, false);
     
-    instance_destroy();
-
+    alarm[11] = audio_sound_length(sndBeatLevel) * room_speed;
+    
+    instance_create(512, 300, objDebugScreen);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set debug stuff up
+
+
 </string>
           </argument>
         </arguments>

@@ -30,6 +30,7 @@
     <sprite>sprites\sprFootballs</sprite>
     <sprite>sprites\sprFootballsOff</sprite>
     <sprite>sprites\sprYardLines</sprite>
+    <sprite>sprites\sprDebugSprite</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>
@@ -67,6 +68,8 @@
     <object>objects\objStartControl</object>
     <object>objects\objFootballs</object>
     <object>objects\objYardLines</object>
+    <object>objects\objRestart</object>
+    <object>objects\objDebugScreen</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMain</room>

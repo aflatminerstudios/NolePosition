@@ -34,7 +34,7 @@ with (objPersistentStats) {
   global.level = level;
 }
 //Number of seconds for each tick, based on level and local levelAdjustment variable
-var levelAdjustment = 0.9;
+var levelAdjustment = 0.96;
 global.tickSpeed = 1 * (power(levelAdjustment, (global.level  - 1)));
 
 //Speed of flashes (when player gets hit), in seconds
@@ -67,10 +67,10 @@ global.numTicks = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Start timers
+            <string>///Control randomization
 
-alarm[0] = global.tickSpeed * room_speed;
-alarm[1] = global.tickSpeed * 1.5 * room_speed;
+//Uncomment for "real" randomness, comment to see same results each time
+randomize();
 </string>
           </argument>
         </arguments>
@@ -91,10 +91,10 @@ alarm[1] = global.tickSpeed * 1.5 * room_speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Control randomization
+            <string>///Start timers
 
-//Uncomment for "real" randomness, comment to see same results each time
-randomize();
+alarm[0] = global.tickSpeed * room_speed;
+alarm[1] = global.tickSpeed * 1.5 * room_speed;
 </string>
           </argument>
         </arguments>
@@ -295,6 +295,22 @@ draw_set_halign(fa_center);
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>0</libid>
+        <id>0</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="2" enumb="2">
@@ -706,7 +722,7 @@ global.numTicks++;
             <kind>1</kind>
             <string>/// Change level
 
-if (global.numTicks % 35 == 0) {
+if (global.numTicks % 5 == 0) {
 
     score += lives * 10;
 
