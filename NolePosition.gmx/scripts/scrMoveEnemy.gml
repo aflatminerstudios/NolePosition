@@ -23,7 +23,17 @@ with (object) {
     y = coords[1];
     
     dir = irandom(1);    
-    
+
+    switch (gridY) {
+      case 1:
+        image_xscale = 0.9;
+        image_yscale = 0.9;    
+        break;
+      case 2:
+        image_xscale = 1.15;
+        image_yscale = 1.15;    
+        break;
+    }
     
     //Check for previous enemy going to the right if current enemy is trying to move left
     if (dir == 0 && gridX > 0) {
@@ -43,6 +53,7 @@ with (object) {
     
     object.depth -= 1;
     
+    
   } else if (gridY == 2) {
     gridY += 1;
 
@@ -53,7 +64,10 @@ with (object) {
     y = coords[1];
     
     image_index = 0;    
-    
+ 
+    image_xscale = 1.15;
+    image_yscale = 1.15;
+       
     object.depth -= 1;
     
   }

@@ -24,6 +24,8 @@ while (e == 0) {
 
 e.gridX = r;
 e.gridY = 0;
+e.image_xscale = 0.75;
+e.image_yscale = 0.75;
 
 return e;
 

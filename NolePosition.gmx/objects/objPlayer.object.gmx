@@ -143,12 +143,14 @@ if (flashCounter == 0) {
   
     x = coords[0];
     y = coords[1];
+    audio_play_sound(sndMoveBeep, 10, false);
   } else if (scrIsRightButtonPressed() &amp;&amp; gridX &lt; global.gridMax) {
     gridX += 1;
     var coords = scrConvertFromGrid(gridX, gridY);
   
     x = coords[0];
     y = coords[1];  
+    audio_play_sound(sndMoveBeep, 10, false);
   }
   
   if (scrIsRunButtonPressed()) {
