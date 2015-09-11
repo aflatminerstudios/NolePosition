@@ -33,6 +33,9 @@ if (instance_number(objField) == 0) {
 if (instance_number(objHandheld) == 0) { 
     instance_create(512 + 1124, 300, objHandheld);
 }
+if (instance_number(objScratches) == 0) { 
+    instance_create(512 + 2248, 300, objScratches);
+}
 </string>
           </argument>
         </arguments>
