@@ -51,6 +51,8 @@
     <script>scripts\scrIsRightButtonPressed.gml</script>
     <script>scripts\scrIsRunButtonReleased.gml</script>
     <script>scripts\scrCollision.gml</script>
+    <script>scripts\scrToggleSound.gml</script>
+    <script>scripts\scrIsSoundButtonPressed.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntScoreboard</font>
