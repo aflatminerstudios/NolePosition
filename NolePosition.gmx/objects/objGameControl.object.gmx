@@ -34,7 +34,7 @@ with (objPersistentStats) {
   global.level = level;
 }
 //Number of seconds for each tick, based on level and local levelAdjustment variable
-var levelAdjustment = 0.94;
+var levelAdjustment = 0.93;//0.94;
 global.tickSpeed = 1 * (power(levelAdjustment, (global.level  - 1)));
 
 //Speed of flashes (when player gets hit), in seconds
@@ -735,7 +735,7 @@ global.numTicks++;
             <kind>1</kind>
             <string>/// Change level
 
-if (global.numTicks % 35 == 0) {
+if (global.numTicks % 25 == 0) {
 
     score += lives * 10;
 
@@ -798,13 +798,21 @@ if (global.numTicks % 35 == 0) {
           with (objEnemy) {
             instance_destroy();
           }
+          
+          with (objPlayer) {
+            instance_destroy();
+          }
+          
+          with (objGameOver) {
+            sprite_index = sprGameOver;
+          }
           audio_play_sound(sndBeatGame, 15, false);
-          level = 1;
-          lives = 4;  
-          score = 0; 
+          //level = 1;
+          //lives = 4;  
+          //score = 0; 
       
          // Restarts room
-         other.alarm[2] = audio_sound_length(sndBeatGame) * room_speed; 
+         //other.alarm[2] = audio_sound_length(sndBeatGame) * room_speed; 
          other.alarm[0] = -5;  
          other.alarm[1] = -5;          
       }
@@ -895,6 +903,38 @@ with (objYardLines) {
 if(scrIsSoundButtonPressed()) {
   show_debug_message("Sound button pressed.");
   scrToggleSound();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for Start button press (off)
+
+if(scrIsStartButtonPressed()) {
+  show_debug_message("Start button pressed, turning off.");
+  with (objPersistentStats) {
+    level = 1;
+  }
+  score = 0;
+  lives = 4;
+  audio_stop_all();
+  room_restart();
 }
 </string>
           </argument>

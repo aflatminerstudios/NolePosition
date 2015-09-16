@@ -11,7 +11,7 @@
     <sound>sound\sndHalfBeep</sound>
     <sound>sound\sndBeatGame</sound>
     <sound>sound\sndMoveBeep</sound>
-    <sound>sound\sndGameOver</sound>
+    <sound>sound\sndGameOverBad</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprPlayer</sprite>
@@ -34,6 +34,7 @@
     <sprite>sprites\sprGameOver</sprite>
     <sprite>sprites\sprGameOverOff</sprite>
     <sprite>sprites\sprScratches</sprite>
+    <sprite>sprites\sprButtonTouched</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTemp</background>

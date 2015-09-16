@@ -4,7 +4,7 @@
 
 if (--lives < 1) {
       
-  audio_play_sound(sndGameOver, 15, false);
+  audio_play_sound(sndGameOverBad, 15, false);
 
   with (objGameOver) {
     sprite_index = sprGameOver;
@@ -35,7 +35,7 @@ if (--lives < 1) {
   }
   
   with (objGameControl) {
-    alarm[0] = -5; //global.tickSpeed * room_speed;
+    alarm[0] = -5;
     alarm[1] = -5;
     for (var i = 0; i < 5; ++i) {
       enemies[3, i] = 0;
