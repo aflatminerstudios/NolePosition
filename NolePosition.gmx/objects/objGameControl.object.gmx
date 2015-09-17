@@ -735,7 +735,8 @@ global.numTicks++;
             <kind>1</kind>
             <string>/// Change level
 
-if (global.numTicks % 25 == 0) {
+var totalTicksToFinishLevel = 24 + (objPersistentStats.level);  //35
+if (global.numTicks % totalTicksToFinishLevel == 0) {
 
     score += lives * 10;
 
